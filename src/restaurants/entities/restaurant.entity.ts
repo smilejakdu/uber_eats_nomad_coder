@@ -1,19 +1,16 @@
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { Entity } from 'typeorm';
+import { Field, ObjectType } from '@nestjs/graphql';
 
-@InputType('RestaurantInputType', { isAbstract: true })
 @ObjectType()
-@Entity()
 export class Restaurant {
 	@Field(() => String)
 	name: string;
 
-	@Field(type => Boolean, { nullable: true })
-	isVegan?: boolean;
+	@Field(() => Boolean)
+	isVegan: boolean;
 
-	@Field(type => String)
-	address?: string;
+	@Field(() => String)
+	address: string;
 
-	@Field(type => String)
-	ownersName?: string;
+	@Field(() => String)
+	ownersName: string;
 }
