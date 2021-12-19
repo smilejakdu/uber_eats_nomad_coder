@@ -1,16 +1,19 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { CoreEntity } from 'src/common/entities/core.entity';
+import { Entity } from 'typeorm';
 
 @ObjectType()
-export class Restaurant {
-	@Field(() => String)
+@Entity({ name: 'restaurant' })
+export class RestaurantEntity extends CoreEntity {
+	@Field(type => String)
 	name: string;
 
-	@Field(() => Boolean)
+	@Field(type => Boolean)
 	isVegan: boolean;
 
-	@Field(() => String)
+	@Field(type => String)
 	address: string;
 
-	@Field(() => String)
+	@Field(type => String)
 	ownersName: string;
 }
