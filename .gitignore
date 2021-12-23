@@ -14,6 +14,7 @@ lerna-debug.log*
 # OS
 .DS_Store
 .env
+.env.*
 .eslintrc.js
 # Tests
 /coverage
@@ -22,6 +23,7 @@ lerna-debug.log*
 # IDEs and editors
 /.idea
 .project
+ormconfig.ts
 .classpath
 .c9/
 *.launch

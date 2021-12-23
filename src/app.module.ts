@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import ormconfig from 'ormconfig';
 
+console.log(process.env.NODE_ENV);
 @Module({
 	imports: [
 		GraphQLModule.forRoot({
@@ -13,7 +14,6 @@ import ormconfig from 'ormconfig';
 		}),
 		ConfigModule.forRoot({
 			isGlobal: true,
-			envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.test',
 		}),
 		TypeOrmModule.forRoot(ormconfig),
 		RestaurantsModule,
