@@ -14,6 +14,8 @@ console.log(process.env.NODE_ENV);
 		}),
 		ConfigModule.forRoot({
 			isGlobal: true,
+			envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.test',
+			ignoreEnvFile: process.env.NODE_ENV === 'prod',
 		}),
 		TypeOrmModule.forRoot(ormconfig),
 		RestaurantsModule,

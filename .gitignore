@@ -16,6 +16,7 @@ lerna-debug.log*
 .env
 .env.*
 .eslintrc.js
+.prettierrc
 # Tests
 /coverage
 /.nyc_output
