@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import ormconfig from 'ormconfig';
 
+import * as Joi from 'joi';
+
 console.log(process.env.NODE_ENV);
 @Module({
 	imports: [
