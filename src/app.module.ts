@@ -7,6 +7,7 @@ import { RestaurantsModule } from './restaurants/restaurants.module';
 import ormconfig from 'ormconfig';
 import * as Joi from 'joi';
 import { validate } from '../env.validation';
+import { RestaurantEntity } from './restaurants/entities/restaurant.entity';
 
 console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
 // DB_HOST = localhost;
@@ -36,8 +37,10 @@ console.log('DB_HOST:', process.env.DB_HOST);
 			username: process.env.DB_USERNAME,
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_NAME,
-			synchronize: true,
+			synchronize: process.env.NODE_ENV !== 'prod',
+			// synchronize: true,
 			logging: true,
+			entities: [RestaurantEntity],
 		}),
 		RestaurantsModule,
 	],
