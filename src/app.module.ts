@@ -3,7 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { RestaurantsModule } from './restaurants/restaurants.module';
+import { RestaurantsModule } from './restaurants/restaurant.module';
 import ormconfig from 'ormconfig';
 import * as Joi from 'joi';
 import { validate } from '../env.validation';

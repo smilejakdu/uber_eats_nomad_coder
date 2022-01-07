@@ -1,16 +1,17 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateRestaurantDto } from './dto/create-restaurant.dto';
 import { RestaurantEntity } from './entities/restaurant.entity';
+import { RestaurantService } from './restaurant.service';
 
 @Resolver(of => RestaurantEntity)
 export class RestaurantResolver {
+	constructor(private readonly restaurantService: RestaurantService) {}
 	@Query(returns => [RestaurantEntity])
-	restaurants(@Args('veganOnly') veganOnly: boolean): RestaurantEntity[] {
-		return [];
+	restaurants(): Promise<RestaurantEntity[]> {
+		return this.restaurantService.getAll();
 	}
 	@Mutation(returns => Boolean)
 	createRestaurant(@Args() createRestaurantDto: CreateRestaurantDto): boolean {
-		console.log(createRestaurantDto);
 		return true;
 	}
 }
