@@ -1,9 +1,27 @@
-# Prival Api 
+# Nuber Eats
 
-I studied and listened to Nomad Coder lectures.
+The Backend of Nuber Eats Clone
 
-and i refacted studying DDD
+## User Model:
 
-The existing code was changed to the DDD method.
+- id
+- createdAt
+- updatedAt
 
-Used NestJS, TypeORM, TDD, DDD, GraphQL.
+- email
+- password
+- role(client|owner|delivery)
+
+## User CRUD:
+
+- Create Account
+- Log In
+- See Profile
+- Edit Profile
+- Verify Email
+
+
+## DDD Design Pattern
+
+- User Domain
+- User Application

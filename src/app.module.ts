@@ -4,19 +4,17 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { RestaurantsModule } from './restaurants/restaurant.module';
-import ormconfig from 'ormconfig';
 import * as Joi from 'joi';
-import { validate } from '../env.validation';
 import { RestaurantEntity } from './restaurants/entities/restaurant.entity';
+import { UsersModule } from './users/users.module';
+import { CommonModule } from './common/common.module';
+import { UserEntity } from './users/entities/user.entity';
 
 console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
 // DB_HOST = localhost;
 console.log('DB_HOST:', process.env.DB_HOST);
 @Module({
 	imports: [
-		GraphQLModule.forRoot({
-			autoSchemaFile: true,
-		}),
 		ConfigModule.forRoot({
 			isGlobal: true,
 			envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.test',
@@ -39,9 +37,13 @@ console.log('DB_HOST:', process.env.DB_HOST);
 			database: process.env.DB_NAME,
 			synchronize: process.env.NODE_ENV !== 'prod',
 			logging: process.env.NODE_ENV !== 'prod',
-			entities: [RestaurantEntity],
+			entities: [UserEntity],
 		}),
-		RestaurantsModule,
+		GraphQLModule.forRoot({
+			autoSchemaFile: true,
+		}),
+		UsersModule,
+		CommonModule,
 	],
 	controllers: [],
 	providers: [],
