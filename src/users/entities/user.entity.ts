@@ -1,13 +1,14 @@
-import { Column, Entity } from 'typeorm';
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
-
+import { Field, InputType, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { CoreEntity } from 'src/common/entities/CoreEntity';
+import { Column, Entity } from 'typeorm';
 
 enum UserRole {
 	Client,
 	Owner,
 	Delivery,
 }
+
+registerEnumType(UserRole, { name: 'UserRole' });
 
 @InputType({ isAbstract: true })
 @ObjectType()
