@@ -7,15 +7,15 @@ import { LoginInput } from './dto/login.dto';
 
 @Injectable()
 export class UserService {
-	constructor(@InjectRepository(UserEntity) private readonly users: Repository<UserEntity>) {}
+	constructor(@InjectRepository(UserEntity) private readonly usersRepository: Repository<UserEntity>) {}
 
 	async createAccount({ email, password, role }: CreateAccountInput): Promise<{ ok: boolean; error?: string }> {
 		try {
-			const exists = await this.users.findOne({ email });
+			const exists = await this.usersRepository.findOne({ email });
 			if (exists) {
 				return { ok: false, error: 'There is a user with that email already' };
 			}
-			await this.users.save(this.users.create({ email, password, role }));
+			await this.usersRepository.save(this.usersRepository.create({ email, password, role }));
 			return {
 				ok: true,
 			};
@@ -25,16 +25,15 @@ export class UserService {
 	}
 
 	async login({ email, password }: LoginInput): Promise<{ ok: boolean; error?: string; token?: string }> {
-		// make a JWT give it to the user
 		try {
-			const user = await this.users.findOne({ email });
-			if (!user) {
+			const responseUser = await this.usersRepository.findOne({ email });
+			if (!responseUser) {
 				return {
 					ok: false,
 					error: 'Wrong password',
 				};
 			}
-			const passwordCorrect = await user.checkPassword(password);
+			const passwordCorrect = await responseUser.checkPassword(password);
 			if (!passwordCorrect) {
 				return {
 					ok: false,
