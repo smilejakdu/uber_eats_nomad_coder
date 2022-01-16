@@ -49,7 +49,7 @@ export class UserService {
 			const token = jwt.sign({ id: responseUser.id }, this.configService.get('SECRET_KEY'));
 			return {
 				ok: true,
-				token: 'lalalalalala',
+				token,
 			};
 		} catch (error) {
 			return {
