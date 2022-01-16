@@ -7,12 +7,14 @@ import * as jwt from 'jsonwebtoken';
 import { CreateAccountInput } from './dto/create-account.dto';
 import { UserEntity } from './entities/user.entity';
 import { LoginInput } from './dto/login.dto';
+import { JwtService } from '../jwt/jwt.service';
 
 @Injectable()
 export class UserService {
 	constructor(
 		@InjectRepository(UserEntity) private readonly usersRepository: Repository<UserEntity>,
 		private readonly configService: ConfigService,
+		private readonly jwtService: JwtService,
 	) {}
 
 	async createAccount({ email, password, role }: CreateAccountInput): Promise<{ ok: boolean; error?: string }> {
