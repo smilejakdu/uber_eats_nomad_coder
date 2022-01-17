@@ -41,4 +41,7 @@ export class UserResolver {
 			};
 		}
 	}
+
+	@Query(returns => UserEntity)
+	me() {}
 }
