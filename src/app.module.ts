@@ -41,7 +41,7 @@ import { JwtService } from './jwt/jwt.service';
 			autoSchemaFile: true,
 		}),
 		JwtModule.forRoot({
-			private_key: process.env.PRIVATE_KEY,
+			privateKey: process.env.PRIVATE_KEY,
 		}),
 		UsersModule,
 		CommonModule,

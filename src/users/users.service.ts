@@ -48,7 +48,7 @@ export class UserService {
 					error: 'Wrong password',
 				};
 			}
-			const token = jwt.sign({ id: responseUser.id }, this.configService.get('SECRET_KEY'));
+			const token = await this.jwtService.sign(responseUser.id);
 			return {
 				ok: true,
 				token,
