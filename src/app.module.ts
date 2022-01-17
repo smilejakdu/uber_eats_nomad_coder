@@ -9,6 +9,7 @@ import { CommonModule } from './common/common.module';
 import { UserEntity } from './users/entities/user.entity';
 import { JwtModule } from './jwt/jwt.module';
 import { JwtMiddleware } from './jwt/jwt.middleware';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
 	imports: [
@@ -46,6 +47,7 @@ import { JwtMiddleware } from './jwt/jwt.middleware';
 		}),
 		UsersModule,
 		CommonModule,
+		AuthModule,
 	],
 	controllers: [],
 	providers: [],

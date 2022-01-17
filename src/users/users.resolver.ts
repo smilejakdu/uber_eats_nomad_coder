@@ -3,6 +3,8 @@ import { CreateAccountInput, CreateAccountOutput } from './dto/create-account.dt
 import { LoginInput, LoginOutput } from './dto/login.dto';
 import { UserEntity } from './entities/user.entity';
 import { UserService } from './users.service';
+import { AuthGuard } from '../auth/auth.guard';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver(of => UserEntity)
 export class UserResolver {
@@ -43,11 +45,6 @@ export class UserResolver {
 	}
 
 	@Query(returns => UserEntity)
-	me(@Context() context) {
-		if (!context.user) {
-			return;
-		} else {
-			return context.user;
-		}
-	}
+	@UseGuards(AuthGuard)
+	me() {}
 }

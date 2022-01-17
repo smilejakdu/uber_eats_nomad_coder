@@ -13,6 +13,6 @@ export class JwtService {
 	}
 
 	async verify(token: string) {
-		return jwt.verify(token , this.options.privateKey):
+		return jwt.verify(token, this.options.privateKey);
 	}
 }
